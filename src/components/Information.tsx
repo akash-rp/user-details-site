@@ -1,9 +1,8 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { useContext } from "react";
 import UserDetailsContext from "../contexts/userDetailsContext";
-import React from "react";
 
-export default function Information() {
+const Information = () => {
   const { info } = useContext(UserDetailsContext);
 
   return (
@@ -40,4 +39,6 @@ export default function Information() {
       )}
     </Box>
   );
-}
+};
+
+export default Information;

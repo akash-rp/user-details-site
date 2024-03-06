@@ -11,9 +11,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { TechStackSectionProps } from "../../models/FormModels";
-import React from "react";
-// import { FieldError } from "react-hook-form/dist/types/errors";
-// import { FieldError, useForm } from "react-hook-form";
 
 const TechStackSection = ({
   fields,

@@ -7,7 +7,6 @@ import OtherInformationSection from "./FormSections/OtherInformationSection";
 import TechStackSection from "./FormSections/TechStackSection";
 import { UserInfoForm } from "../models/UserInfoModel";
 
-// Main UserDetailsForm component
 const UserDetailsForm = () => {
   const { setInfo } = useContext(UserDetailsContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);

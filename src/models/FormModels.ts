@@ -1,9 +1,4 @@
-import {
-  Control,
-  FieldErrorsImpl,
-  FieldValues,
-  UseFormRegister,
-} from "react-hook-form";
+import { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import { UserInfoForm } from "./UserInfoModel";
 
 export type BasicDetailsSectionProps = {
