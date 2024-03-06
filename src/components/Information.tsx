@@ -24,6 +24,9 @@ export default function Information() {
             <span className={"bold"}>Phone Number:</span> {info.phone}
           </div>
           <div>
+            <span className={"bold"}>Gender:</span> {info.gender}
+          </div>
+          <div>
             <span className={"bold"}>Date of Birth:</span> {info.dob}
           </div>
           <div>

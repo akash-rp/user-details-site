@@ -8,11 +8,15 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { Select } from "chakra-react-select";
+import { GroupBase, OptionBase, Select } from "chakra-react-select";
 import { useMemo } from "react";
 import { Controller } from "react-hook-form";
 import { OtherInformationSectionProps } from "../../models/FormModels";
-import React from "react";
+
+interface GenderOption extends OptionBase {
+  value: string;
+  label: string;
+}
 
 const OtherInformationSection = ({
   register,
@@ -45,12 +49,12 @@ const OtherInformationSection = ({
           }) => (
             <FormControl isInvalid={Boolean(error?.message)}>
               <FormLabel>Gender</FormLabel>
-              <Select
+              <Select<GenderOption, false, GroupBase<GenderOption>>
                 name={name}
                 ref={ref}
                 onChange={onChange}
                 onBlur={onBlur}
-                value={value}
+                value={value as unknown as GenderOption}
                 options={genderOptions}
                 placeholder="Gender"
                 selectedOptionStyle="check"

@@ -5,7 +5,7 @@ import UserDetailsContext from "../contexts/userDetailsContext";
 import BasicDetailsSection from "./FormSections/BasicDetailsSections";
 import OtherInformationSection from "./FormSections/OtherInformationSection";
 import TechStackSection from "./FormSections/TechStackSection";
-import React from "react";
+import { UserInfoForm } from "../models/UserInfoModel";
 
 // Main UserDetailsForm component
 const UserDetailsForm = () => {
@@ -16,32 +16,32 @@ const UserDetailsForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm();
+  } = useForm<UserInfoForm>();
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "techStack",
     rules: {
       minLength: 1,
     },
+    name: "techStack",
   });
 
   const addSkillField = useCallback(() => {
-    append({});
+    append({ value: "" });
   }, [append]);
 
   const removeSkillField = useCallback(
-    (index) => {
+    (index: number) => {
       remove(index);
     },
     [remove]
   );
 
   useEffect(() => {
-    append({}, { shouldFocus: false });
+    append({ value: "" }, { shouldFocus: false });
   }, [append]);
 
-  const formatDate = (inputDate) => {
+  const formatDate = (inputDate: string) => {
     const dateParts = inputDate.split("-");
     const year = dateParts[0];
     const month = dateParts[1];
@@ -69,7 +69,7 @@ const UserDetailsForm = () => {
     return formattedDate;
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: UserInfoForm) => {
     console.log(data);
     setIsLoading(true);
     setTimeout(() => {
@@ -77,6 +77,7 @@ const UserDetailsForm = () => {
         ...data,
         techStack: data.techStack.map((stack) => stack.value),
         dob: formatDate(data.dob),
+        gender: data.gender.value,
       };
       setInfo(modifiedData);
       setIsLoading(false);

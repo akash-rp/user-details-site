@@ -4,7 +4,7 @@ import UserDetailsForm from "./components/UserDetailsForm";
 import { ChakraProvider, Heading, VStack, extendTheme } from "@chakra-ui/react";
 import UserDetailsContext from "./contexts/userDetailsContext";
 import { UserInfo } from "./models/UserInfoModel";
-import InputStyle from "./styles/Input";
+import Input from "./styles/Input";
 import React from "react";
 import Information from "./components/Information";
 
@@ -13,7 +13,7 @@ function App() {
   const value = { info, setInfo };
   const theme = extendTheme({
     components: {
-      InputStyle,
+      Input,
     },
   });
   return (
