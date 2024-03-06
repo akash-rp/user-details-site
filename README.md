@@ -1,6 +1,8 @@
 # Getting Started with User Details Site
 This project is created using ReactJS, Typescript, Chakra UI, React Hook form v7.39 and Chakra React Select v3.3.1. It allows users to input their basic details, other information, and their tech stack.
 
+Open [User Deatils Site](https://user-details.akashrp.link). Site deployed to Cloudflare pages.
+
 ![alt text](image.png)
 
 ## How to run the project
