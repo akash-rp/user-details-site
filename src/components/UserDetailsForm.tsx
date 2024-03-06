@@ -5,6 +5,7 @@ import UserDetailsContext from "../contexts/userDetailsContext";
 import BasicDetailsSection from "./FormSections/BasicDetailsSections";
 import OtherInformationSection from "./FormSections/OtherInformationSection";
 import TechStackSection from "./FormSections/TechStackSection";
+import React from "react";
 
 // Main UserDetailsForm component
 const UserDetailsForm = () => {

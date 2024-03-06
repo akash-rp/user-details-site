@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { TechStackSectionProps } from "../../models/FormModels";
+import React from "react";
 
 const TechStackSection = ({
   fields,

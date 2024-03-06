@@ -12,6 +12,7 @@ import { Select } from "chakra-react-select";
 import { useMemo } from "react";
 import { Controller } from "react-hook-form";
 import { OtherInformationSectionProps } from "../../models/FormModels";
+import React from "react";
 
 const OtherInformationSection = ({
   register,
