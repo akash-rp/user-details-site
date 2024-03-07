@@ -1,21 +1,30 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 import { UserInfoForm } from "../models/UserInfoModel";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const Information = () => {
   const {
     getValues,
-    formState: { isSubmitSuccessful, isSubmitting, isValid, isDirty },
+    formState: { isSubmitting, isValid, submitCount },
   } = useFormContext<UserInfoForm>();
 
   const [userInfo, setUserInfo] = useState<UserInfoForm>({} as UserInfoForm);
 
-  useEffect(() => {
-    if (!isSubmitting && isValid) {
-      setUserInfo(getValues());
+  const submitCountRef = useRef(0);
+
+  const updateUserInfo = useCallback(() => {
+    if (submitCount !== submitCountRef.current) {
+      if (isValid) {
+        setUserInfo(getValues());
+      }
+      submitCountRef.current = submitCount;
     }
-  }, [isSubmitting, getValues, isValid]);
+  }, [submitCount, isValid, getValues]);
+
+  useEffect(() => {
+    updateUserInfo();
+  }, [submitCount, updateUserInfo]);
 
   return (
     <Box w={"full"} p={6} bg="#f0eeee" borderRadius={15}>
@@ -47,7 +56,7 @@ const Information = () => {
           </div>
         </>
       )}
-      {!isSubmitSuccessful && !isDirty && (
+      {submitCount === 0 && (
         <Text align={"center"}>No Information Available</Text>
       )}
       {isSubmitting && <Text align={"center"}>Loading</Text>}

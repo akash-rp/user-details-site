@@ -31,11 +31,14 @@ const SelectOptionStyling: SelectComponentsConfig<
   ),
 };
 
-export const chakraStyles: ChakraStylesConfig = {
+export const chakraStyles: ChakraStylesConfig<
+  GenderOption,
+  false,
+  GroupBase<GenderOption>
+> = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     background: "white",
-    border: "none",
   }),
 };
 
