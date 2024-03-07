@@ -1,21 +1,19 @@
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Box, Button, HStack, VStack } from "@chakra-ui/react";
-import { useFieldArray, useForm } from "react-hook-form";
-import UserDetailsContext from "../contexts/userDetailsContext";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import BasicDetailsSection from "./FormSections/BasicDetailsSections";
 import OtherInformationSection from "./FormSections/OtherInformationSection";
 import TechStackSection from "./FormSections/TechStackSection";
 import { UserInfoForm } from "../models/UserInfoModel";
 
 const UserDetailsForm = () => {
-  const { setInfo } = useContext(UserDetailsContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<UserInfoForm>();
+  } = useFormContext<UserInfoForm>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -40,47 +38,11 @@ const UserDetailsForm = () => {
     append({ value: "" }, { shouldFocus: false });
   }, [append]);
 
-  const formatDate = (inputDate: string) => {
-    const dateParts = inputDate.split("-");
-    const year = dateParts[0];
-    const month = dateParts[1];
-    const day = dateParts[2];
-
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const monthAbbreviation = months[parseInt(month) - 1];
-
-    // Format the date as dd-mmm-yyyy
-    const formattedDate = `${day}-${monthAbbreviation}-${year}`;
-
-    return formattedDate;
-  };
-
-  const onSubmit = (data: UserInfoForm) => {
-    console.log(data);
+  const onSubmit = async (data: UserInfoForm) => {
     setIsLoading(true);
-    setTimeout(() => {
-      const modifiedData = {
-        ...data,
-        techStack: data.techStack.map((stack) => stack.value),
-        dob: formatDate(data.dob),
-        gender: data.gender.value,
-      };
-      setInfo(modifiedData);
-      setIsLoading(false);
-    }, 3000);
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(setIsLoading(false)), 3000);
+    });
   };
 
   return (
