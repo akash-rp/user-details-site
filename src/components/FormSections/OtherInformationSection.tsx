@@ -8,15 +8,15 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { GroupBase, OptionBase, Select } from "chakra-react-select";
+import { GroupBase, Select } from "chakra-react-select";
 import { useMemo } from "react";
 import { Controller } from "react-hook-form";
-import { OtherInformationSectionProps } from "../../models/FormModels";
-
-interface GenderOption extends OptionBase {
-  value: string;
-  label: string;
-}
+import {
+  GenderOption,
+  OtherInformationSectionProps,
+} from "../../models/FormModels";
+import SelectOptionStyling from "./CustomSelectOption";
+import { chakraStyles } from "./CustomSelectOption";
 
 const OtherInformationSection = ({
   register,
@@ -57,8 +57,10 @@ const OtherInformationSection = ({
                 value={value as unknown as GenderOption}
                 options={genderOptions}
                 placeholder="Gender"
-                selectedOptionStyle="check"
                 isInvalid={Boolean(error?.message)}
+                components={SelectOptionStyling}
+                selectedOptionColor="white"
+                chakraStyles={chakraStyles}
               />
               <FormErrorMessage>{error && error.message}</FormErrorMessage>
             </FormControl>

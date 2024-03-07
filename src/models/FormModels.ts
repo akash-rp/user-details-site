@@ -1,5 +1,6 @@
 import { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import { UserInfoForm } from "./UserInfoModel";
+import { OptionBase } from "chakra-react-select/dist/types/types";
 
 export type BasicDetailsSectionProps = {
   register: UseFormRegister<UserInfoForm>;
@@ -19,3 +20,8 @@ export type TechStackSectionProps = {
   addSkill: () => void;
   errors: Partial<FieldErrorsImpl<UserInfoForm>>;
 };
+
+export interface GenderOption extends OptionBase {
+  value: string;
+  label: string;
+}
