@@ -87,7 +87,6 @@ const BasicDetailsSection = ({
         <InputGroup>
           <InputLeftAddon>+91</InputLeftAddon>
           <Input
-            type="number"
             {...register("phone", {
               required: "Phone number is required",
               pattern: {
